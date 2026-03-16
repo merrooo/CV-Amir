@@ -61,6 +61,15 @@
             border: 2px solid #2c3e50;
         }
 
+        .zoomable {
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+
+        .zoomable:hover {
+            transform: scale(1.02);
+        }
+
         .contact-info {
             font-style: normal;
         }
@@ -128,6 +137,50 @@
             background: #fafafa;
         }
 
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            padding: 24px;
+        }
+
+        .lightbox.is-open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: min(92vw, 1100px);
+            max-height: 90vh;
+        }
+
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: #fff;
+            color: #2c3e50;
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+
         .cert-item {
             margin: 0;
         }
@@ -156,6 +209,11 @@
             .cert-grid {
                 grid-template-columns: 1fr;
             }
+
+            .lightbox-close {
+                top: -8px;
+                right: -8px;
+            }
         }
     </style>
 </head>
@@ -166,7 +224,7 @@
         <header>
             <h1>AMIR ABDELNABEI ABOYRAYA ELSEYOUFI</h1>
             <div class="header-card">
-                <img class="profile-photo" src="min.PNG" alt="Profile photo">
+                <img class="profile-photo zoomable" src="min.PNG" alt="Profile photo" data-full="min.PNG">
                 <div class="header-info">
                     <div class="contact-info">
                         <strong>Nationality:</strong> Egyptian <br>
@@ -197,30 +255,47 @@
             <div class="job">
                 <span class="date">Mar 2024 - Dec 2024</span>
                 <div class="job-title">Project Engineer</div>
-                <div class="company">Nasser Salem Al Heider Co. (Saudi Electricity Company - Unified Contract), Al Hassa Branch, Saudi Arabia</div>
+                <div class="company">Nasser Salem Al Heider Co. (Saudi Electricity Company - Unified Contract), Al Hassa
+                    Branch, Saudi Arabia</div>
                 <ul>
-                    <li>Supervised all site activities related to electrical installation and reinforcement of distribution networks including transformers, RMUs, switchgear, overhead lines, and HV/LV underground cables.</li>
-                    <li>Directed daily tasks for labor crews, ensuring productivity, adherence to project plans, and compliance with quality and safety standards.</li>
-                    <li>Managed equipment deployment and utilization on-site, including cranes, cable pulling machines, compactors, and testing instruments.</li>
-                    <li>Oversaw materials and inventory in the site store, monitored material consumption, and coordinated with procurement to maintain stock levels in line with work schedules.</li>
-                    <li>Implemented and enforced SEC safety procedures, conducted toolbox talks, and ensured all personnel followed updated HSE protocols.</li>
-                    <li>Monitored subcontractor performance and ensured alignment with project specifications, deadlines, and safety regulations.</li>
-                    <li>Prepared and submitted daily, weekly, and monthly progress reports to SEC representatives and resolved site issues through regular coordination meetings.</li>
+                    <li>Supervised all site activities related to electrical installation and reinforcement of
+                        distribution networks including transformers, RMUs, switchgear, overhead lines, and HV/LV
+                        underground cables.</li>
+                    <li>Directed daily tasks for labor crews, ensuring productivity, adherence to project plans, and
+                        compliance with quality and safety standards.</li>
+                    <li>Managed equipment deployment and utilization on-site, including cranes, cable pulling machines,
+                        compactors, and testing instruments.</li>
+                    <li>Oversaw materials and inventory in the site store, monitored material consumption, and
+                        coordinated with procurement to maintain stock levels in line with work schedules.</li>
+                    <li>Implemented and enforced SEC safety procedures, conducted toolbox talks, and ensured all
+                        personnel followed updated HSE protocols.</li>
+                    <li>Monitored subcontractor performance and ensured alignment with project specifications,
+                        deadlines, and safety regulations.</li>
+                    <li>Prepared and submitted daily, weekly, and monthly progress reports to SEC representatives and
+                        resolved site issues through regular coordination meetings.</li>
                 </ul>
             </div>
 
             <div class="job">
                 <span class="date">Jan 2012 - Jan 2019</span>
                 <div class="job-title">Project Engineer</div>
-                <div class="company">Rak Arabia Co. (Saudi Electricity Company - Unified Contract), Qurayat & Afif Branches, Saudi Arabia</div>
+                <div class="company">Rak Arabia Co. (Saudi Electricity Company - Unified Contract), Qurayat & Afif
+                    Branches, Saudi Arabia</div>
                 <ul>
-                    <li>Supervised the execution of a 150 KM 33KV double-circuit overhead line project and multiple reinforcement projects under SEC guidelines.</li>
-                    <li>Led site teams, assigning responsibilities to technicians and laborers across different project zones, and provided on-the-job training when needed.</li>
-                    <li>Oversaw heavy equipment operations including pole-erection machines, tensioners, bucket trucks, and excavation machinery; ensured proper maintenance and safe handling.</li>
-                    <li>Managed the project central store and site-level material yards; ensured timely issuance of materials, tracked consumables, and coordinated reorders based on work order progress.</li>
-                    <li>Conducted routine inspections and enforced compliance with SEC safety regulations; followed up on safety audits and rectified non-conformance reports (NCRs).</li>
-                    <li>Coordinated with SEC engineers and safety officers for approvals, inspections, and updated work procedures.</li>
-                    <li>Supported the preparation of red-line drawings, site measurements, and bill of quantity (BOQ) verifications during project handover and billing.</li>
+                    <li>Supervised the execution of a 150 KM 33KV double-circuit overhead line project and multiple
+                        reinforcement projects under SEC guidelines.</li>
+                    <li>Led site teams, assigning responsibilities to technicians and laborers across different project
+                        zones, and provided on-the-job training when needed.</li>
+                    <li>Oversaw heavy equipment operations including pole-erection machines, tensioners, bucket trucks,
+                        and excavation machinery; ensured proper maintenance and safe handling.</li>
+                    <li>Managed the project central store and site-level material yards; ensured timely issuance of
+                        materials, tracked consumables, and coordinated reorders based on work order progress.</li>
+                    <li>Conducted routine inspections and enforced compliance with SEC safety regulations; followed up
+                        on safety audits and rectified non-conformance reports (NCRs).</li>
+                    <li>Coordinated with SEC engineers and safety officers for approvals, inspections, and updated work
+                        procedures.</li>
+                    <li>Supported the preparation of red-line drawings, site measurements, and bill of quantity (BOQ)
+                        verifications during project handover and billing.</li>
                 </ul>
             </div>
 
@@ -229,28 +304,43 @@
                 <div class="job-title">Electrical Engineer</div>
                 <div class="company">North Delta Electrical Distribution Company (NDEDC), Egypt</div>
                 <ul>
-                    <li>Supervised O&amp;M crews handling transformers, switchgear, and MV/LV cable networks across several substations and distribution areas.</li>
-                    <li>Assigned daily maintenance and fault-repair tasks, ensuring technicians followed safety lock-out/tag-out (LOTO) procedures and used PPE as per national safety protocols.</li>
-                    <li>Monitored the use of maintenance equipment such as insulation testers, earth testers, and fault locators, ensuring proper calibration and availability.</li>
-                    <li>Managed the district-level materials store, tracked spare parts for transformers, meters, and switchgear, and coordinated procurement for emergency repairs and upgrades.</li>
-                    <li>Enforced compliance with electrical safety codes and participated in internal safety audits and training workshops.</li>
-                    <li>Followed up on customer complaints and emergency calls, organized rapid-response teams, and maintained documentation for fault clearing and grid restoration.</li>
-                    <li>Led pilot installations and testing for smart and prepaid meters; ensured correct programming, load limits, and communication module integration.</li>
+                    <li>Supervised O&amp;M crews handling transformers, switchgear, and MV/LV cable networks across
+                        several substations and distribution areas.</li>
+                    <li>Assigned daily maintenance and fault-repair tasks, ensuring technicians followed safety
+                        lock-out/tag-out (LOTO) procedures and used PPE as per national safety protocols.</li>
+                    <li>Monitored the use of maintenance equipment such as insulation testers, earth testers, and fault
+                        locators, ensuring proper calibration and availability.</li>
+                    <li>Managed the district-level materials store, tracked spare parts for transformers, meters, and
+                        switchgear, and coordinated procurement for emergency repairs and upgrades.</li>
+                    <li>Enforced compliance with electrical safety codes and participated in internal safety audits and
+                        training workshops.</li>
+                    <li>Followed up on customer complaints and emergency calls, organized rapid-response teams, and
+                        maintained documentation for fault clearing and grid restoration.</li>
+                    <li>Led pilot installations and testing for smart and prepaid meters; ensured correct programming,
+                        load limits, and communication module integration.</li>
                 </ul>
             </div>
 
             <div class="job">
                 <span class="date">Present</span>
                 <div class="job-title">Approved Project Engineer</div>
-                <div class="company">Faas Contracting Company, General Irrigation Corporation (Irrigation Authority Contract), Saudi Arabia</div>
+                <div class="company">Faas Contracting Company, General Irrigation Corporation (Irrigation Authority
+                    Contract), Saudi Arabia</div>
                 <ul>
-                    <li>Certified as a Project Engineer specialized in electrical systems and SCADA-based irrigation control.</li>
-                    <li>Supervised the complete installation of electrical infrastructure for irrigation systems, ensuring compliance with safety regulations and technical specifications.</li>
-                    <li>Prepared and submitted approvals for electrical works to consultants and government authorities, facilitating inspection and clearance processes.</li>
-                    <li>Performed electrical load calculations and quantity take-offs to support project planning and resource allocation.</li>
-                    <li>Coordinated between engineering teams, consultants, and clients to ensure seamless execution and timely progress.</li>
-                    <li>Compiled and submitted technical reports, progress documentation, and compliance records for regulatory bodies and internal auditing.</li>
-                    <li>Managed procurement activities, ensuring the delivery of cost-effective and contract-compliant electrical components and systems.</li>
+                    <li>Certified as a Project Engineer specialized in electrical systems and SCADA-based irrigation
+                        control.</li>
+                    <li>Supervised the complete installation of electrical infrastructure for irrigation systems,
+                        ensuring compliance with safety regulations and technical specifications.</li>
+                    <li>Prepared and submitted approvals for electrical works to consultants and government authorities,
+                        facilitating inspection and clearance processes.</li>
+                    <li>Performed electrical load calculations and quantity take-offs to support project planning and
+                        resource allocation.</li>
+                    <li>Coordinated between engineering teams, consultants, and clients to ensure seamless execution and
+                        timely progress.</li>
+                    <li>Compiled and submitted technical reports, progress documentation, and compliance records for
+                        regulatory bodies and internal auditing.</li>
+                    <li>Managed procurement activities, ensuring the delivery of cost-effective and contract-compliant
+                        electrical components and systems.</li>
                 </ul>
             </div>
 
@@ -259,11 +349,16 @@
                 <div class="job-title">Supplier and Material Approvals Coordinator</div>
                 <div class="company">Faas Contracting Company, Saudi Arabia</div>
                 <ul>
-                    <li>Reviewed and approved suppliers and materials in accordance with project specifications, contract standards, and regulatory requirements.</li>
-                    <li>Maintained continuous communication with suppliers through emails and official correspondence to track submittals and approvals.</li>
-                    <li>Verified compliance of proposed electrical materials with project requirements to ensure alignment and reduce discrepancies.</li>
-                    <li>Organized and managed documentation related to supplier qualifications, technical data sheets, compliance certificates, and material samples.</li>
-                    <li>Supported quality assurance efforts through proactive tracking, follow-ups, and coordination with project stakeholders.</li>
+                    <li>Reviewed and approved suppliers and materials in accordance with project specifications,
+                        contract standards, and regulatory requirements.</li>
+                    <li>Maintained continuous communication with suppliers through emails and official correspondence to
+                        track submittals and approvals.</li>
+                    <li>Verified compliance of proposed electrical materials with project requirements to ensure
+                        alignment and reduce discrepancies.</li>
+                    <li>Organized and managed documentation related to supplier qualifications, technical data sheets,
+                        compliance certificates, and material samples.</li>
+                    <li>Supported quality assurance efforts through proactive tracking, follow-ups, and coordination
+                        with project stakeholders.</li>
                 </ul>
             </div>
 
@@ -273,15 +368,25 @@
                 <div class="company">Omega Engineering LLC, Dubai, United Arab Emirates</div>
                 <ul>
                     <li>Project: Dome Tower (5B + GF + 40 Floors - High-Rise Building).</li>
-                    <li>Approved Electrical Engineer by Dubai Civil Defense (DCD), specialized in fire alarm systems (conventional and addressable).</li>
-                    <li>Supervised installation of electrical systems for a high-rise tower, including power distribution, lighting, low-current systems, and emergency networks.</li>
-                    <li>Managed on-site execution of systems including electrical power and lighting, fire alarm systems, public address and emergency systems, CCTV and access control, lightning protection and earthing.</li>
-                    <li>Reviewed electrical shop drawings, builders' work drawings, and coordination layouts to ensure conflict-free installations.</li>
-                    <li>Prepared material submittals and technical documentation, submitted them to consultants, and followed through to secure approvals.</li>
-                    <li>Coordinated daily with the main contractor and consultants to align site activities and resolve technical issues.</li>
-                    <li>Verified electrical materials and equipment against project specifications and international standards before installation.</li>
-                    <li>Led inspections and approvals for fire alarm systems by Dubai Civil Defense (DCD), ensuring full compliance with DCD codes and regulations.</li>
-                    <li>Supervised installation and commissioning of fire alarm control panels, detectors, modules, and interface relays.</li>
+                    <li>Approved Electrical Engineer by Dubai Civil Defense (DCD), specialized in fire alarm systems
+                        (conventional and addressable).</li>
+                    <li>Supervised installation of electrical systems for a high-rise tower, including power
+                        distribution, lighting, low-current systems, and emergency networks.</li>
+                    <li>Managed on-site execution of systems including electrical power and lighting, fire alarm
+                        systems, public address and emergency systems, CCTV and access control, lightning protection and
+                        earthing.</li>
+                    <li>Reviewed electrical shop drawings, builders' work drawings, and coordination layouts to ensure
+                        conflict-free installations.</li>
+                    <li>Prepared material submittals and technical documentation, submitted them to consultants, and
+                        followed through to secure approvals.</li>
+                    <li>Coordinated daily with the main contractor and consultants to align site activities and resolve
+                        technical issues.</li>
+                    <li>Verified electrical materials and equipment against project specifications and international
+                        standards before installation.</li>
+                    <li>Led inspections and approvals for fire alarm systems by Dubai Civil Defense (DCD), ensuring full
+                        compliance with DCD codes and regulations.</li>
+                    <li>Supervised installation and commissioning of fire alarm control panels, detectors, modules, and
+                        interface relays.</li>
                 </ul>
             </div>
 
@@ -290,53 +395,72 @@
                 <div class="job-title">AI / Machine Learning Engineer</div>
                 <div class="company">Key Responsibilities &amp; Expertise</div>
                 <ul>
-                    <li>Contributed to the development, training, and deployment of machine learning and deep learning models for various applications.</li>
-                    <li>Proficient in Python with hands-on experience using NumPy, Pandas, SciPy, Keras, TensorFlow, and Matplotlib.</li>
-                    <li>Applied data science techniques including data mining, statistical analysis, and predictive modeling to extract insights and support business decisions.</li>
-                    <li>Developed and optimized ML models for image processing, classification, and object detection using OpenCV and deep learning techniques.</li>
-                    <li>Implemented MLOps principles to streamline model lifecycle management, from data ingestion and model training to deployment and monitoring.</li>
-                    <li>Handled and visualized large datasets, performing data cleaning, feature engineering, and transformation for machine learning pipelines.</li>
-                    <li>Selected and configured hardware resources (GPU/CPU/TPU) to meet ML model latency and performance requirements.</li>
+                    <li>Contributed to the development, training, and deployment of machine learning and deep learning
+                        models for various applications.</li>
+                    <li>Proficient in Python with hands-on experience using NumPy, Pandas, SciPy, Keras, TensorFlow, and
+                        Matplotlib.</li>
+                    <li>Applied data science techniques including data mining, statistical analysis, and predictive
+                        modeling to extract insights and support business decisions.</li>
+                    <li>Developed and optimized ML models for image processing, classification, and object detection
+                        using OpenCV and deep learning techniques.</li>
+                    <li>Implemented MLOps principles to streamline model lifecycle management, from data ingestion and
+                        model training to deployment and monitoring.</li>
+                    <li>Handled and visualized large datasets, performing data cleaning, feature engineering, and
+                        transformation for machine learning pipelines.</li>
+                    <li>Selected and configured hardware resources (GPU/CPU/TPU) to meet ML model latency and
+                        performance requirements.</li>
                     <li>Used model evaluation metrics and strategies to improve accuracy and generalization.</li>
-                    <li>Collaborated with cross-functional teams including software developers, data engineers, and business stakeholders to integrate AI solutions.</li>
-                    <li>Demonstrated strong problem-solving ability, attention to detail, and continuous learning mindset to stay current with AI technologies.</li>
+                    <li>Collaborated with cross-functional teams including software developers, data engineers, and
+                        business stakeholders to integrate AI solutions.</li>
+                    <li>Demonstrated strong problem-solving ability, attention to detail, and continuous learning
+                        mindset to stay current with AI technologies.</li>
                 </ul>
                 <div class="company">Selected Web &amp; AI Projects (HTML/CSS &amp; ML Deployment)</div>
                 <ul class="project-list">
                     <li>
                         Calculations Web App:
-                        <a href="https://calculations-1ae85.web.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                        <a href="https://calculations-1ae85.web.app/" target="_blank" rel="noopener noreferrer">Live
+                            Demo</a>
                         —
-                        <a href="https://github.com/merrooo/Calculations" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://github.com/merrooo/Calculations" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
                         <span class="project-note">Quick, clean UI for common calculation workflows.</span>
                     </li>
                     <li>
                         Production Dashboard:
-                        <a href="https://production1-ae85.web.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                        <a href="https://production1-ae85.web.app/" target="_blank" rel="noopener noreferrer">Live
+                            Demo</a>
                         —
-                        <a href="https://github.com/merrooo/NDEDC_Production" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://github.com/merrooo/NDEDC_Production" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
                         <span class="project-note">Responsive layout highlighting production KPIs.</span>
                     </li>
                     <li>
                         Smart App:
                         <a href="https://smart-4108d.web.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
                         —
-                        <a href="https://github.com/merrooo/Smart_Meters" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://github.com/merrooo/Smart_Meters" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
                         <span class="project-note">Modern interface with clear navigation and sections.</span>
                     </li>
                     <li>
                         Calibration Page:
-                        <a href="https://calibration-1ae85.web.app/index.html" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                        <a href="https://calibration-1ae85.web.app/index.html" target="_blank"
+                            rel="noopener noreferrer">Live Demo</a>
                         —
-                        <a href=https://github.com/merrooo/Calibrations" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href=https://github.com/merrooo/Calibrations" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
                         <span class="project-note">Single-page site focused on calibration steps.</span>
                     </li>
                     <li>
                         Concrete Data Set (AI Deployment):
-                        <a href="https://mldeploy-5ddmttiap2dywymr9xnckf.streamlit.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                        <a href="https://mldeploy-5ddmttiap2dywymr9xnckf.streamlit.app/" target="_blank"
+                            rel="noopener noreferrer">Live Demo</a>
                         —
-                        <a href="https://github.com/merrooo/ML_DEPLOY" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <span class="project-note">Performed EDA and visualization, processed features, split data, trained and evaluated the model, then deployed the prediction app.</span>
+                        <a href="https://github.com/merrooo/ML_DEPLOY" target="_blank"
+                            rel="noopener noreferrer">GitHub</a>
+                        <span class="project-note">Performed EDA and visualization, processed features, split data,
+                            trained and evaluated the model, then deployed the prediction app.</span>
                     </li>
                 </ul>
             </div>
@@ -380,36 +504,87 @@
             <h2>Certificates</h2>
             <div class="cert-grid">
                 <figure class="cert-item">
-                    <img src="1.PNG" alt="Certificate 1">
+                    <img class="zoomable" src="1.PNG" alt="Certificate 1" data-full="1.PNG">
                     <figcaption class="cert-caption">Saudi Company Electricity ID</figcaption>
                 </figure>
                 <figure class="cert-item">
-                    <img src="2.PNG" alt="Certificate 2">
+                    <img class="zoomable" src="2.PNG" alt="Certificate 2" data-full="2.PNG">
                     <figcaption class="cert-caption">Approval from SCECO's contractor</figcaption>
                 </figure>
                 <figure class="cert-item">
-                    <img src="3.PNG" alt="Certificate 3">
+                    <img class="zoomable" src="3.PNG" alt="Certificate 3" data-full="3.PNG">
                     <figcaption class="cert-caption">Passport-Saudi consult Approval Engineer</figcaption>
                 </figure>
                 <figure class="cert-item">
-                    <img src="4.PNG" alt="Certificate 4">
+                    <img class="zoomable" src="4.PNG" alt="Certificate 4" data-full="4.PNG">
                     <figcaption class="cert-caption">New-Educational Certificates </figcaption>
                 </figure>
                 <figure class="cert-item">
-                    <img src="5.PNG" alt="Certificate 5">
+                    <img class="zoomable" src="5.PNG" alt="Certificate 5" data-full="5.PNG">
                     <figcaption class="cert-caption">Old-Educational Certificates </figcaption>
                 </figure>
                 <figure class="cert-item">
-                    <img src="6.PNG" alt="Certificate 6">
-                    <figcaption class="cert-caption">Omega Engineering - LLC.Dubai Experience Certificate-Autocad 2d Certificate</figcaption>
+                    <img class="zoomable" src="6.PNG" alt="Certificate 6" data-full="6.PNG">
+                    <figcaption class="cert-caption">Omega Engineering - LLC.Dubai Experience Certificate-Autocad 2d
+                        Certificate</figcaption>
                 </figure>
                 <figure class="cert-item">
-                    <img src="7.PNG" alt="Certificate 7">
-                    <figcaption class="cert-caption">Omega Engineering - LLC.Dubai forms Experience Certificate</figcaption>
+                    <img class="zoomable" src="7.PNG" alt="Certificate 7" data-full="7.PNG">
+                    <figcaption class="cert-caption">Omega Engineering - LLC.Dubai forms Experience Certificate
+                    </figcaption>
                 </figure>
             </div>
         </section>
     </div>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image preview">
+            <button class="lightbox-close" type="button" aria-label="Close preview">&times;</button>
+            <img id="lightbox-image" alt="Preview">
+        </div>
+    </div>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const closeButton = lightbox.querySelector('.lightbox-close');
+
+        const openLightbox = (src, alt) => {
+            lightboxImage.src = src;
+            lightboxImage.alt = alt || 'Preview';
+            lightbox.classList.add('is-open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('is-open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImage.src = '';
+            document.body.style.overflow = '';
+        };
+
+        document.querySelectorAll('.zoomable').forEach((img) => {
+            img.addEventListener('click', () => {
+                const fullSrc = img.getAttribute('data-full') || img.src;
+                openLightbox(fullSrc, img.alt);
+            });
+        });
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        closeButton.addEventListener('click', closeLightbox);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && lightbox.classList.contains('is-open')) {
+                closeLightbox();
+            }
+        });
+    </script>
 
 </body>
 
